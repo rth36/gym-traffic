@@ -1,0 +1,72 @@
+======================================================================
+DO KIDS PICK A GYM, OR PICK THE ONE THEY CAN REACH?
+Google Maps busyness, 3-5 PM only, Mon-Fri
+======================================================================
+
+30 rows (2 gyms x 5 days x 3 hours)
+
+----------------------------------------------------------------------
+1. THE 2x2
+----------------------------------------------------------------------
+friday          mon_thu_3to5  friday_3to5  change
+Fitness 19             19.58        46.33   26.75
+Planet Fitness         67.17        43.33  -23.83
+
+Planet Fitness changes -23.83 from Mon-Thu to Friday
+Fitness 19     changes +26.75
+Difference-in-differences, by hand = +50.58
+
+----------------------------------------------------------------------
+2. SAME THING AS A REGRESSION
+----------------------------------------------------------------------
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     67.1667      1.560     43.059      0.000      64.109      70.224
+friday       -23.8333      2.623     -9.088      0.000     -28.973     -18.693
+f19          -47.5833      2.134    -22.293      0.000     -51.767     -43.400
+friday:f19    50.5833      3.413     14.820      0.000      43.894      57.273
+==============================================================================
+
+friday:f19 = +50.58   (by hand I got +50.58)
+Those match, so the regression is set up right.
+
+95% confidence interval: +43.89 to +57.27
+p-value: 0.0000
+
+What this means:
+  On Friday afternoons, Fitness 19 gets 50.6 points busier than
+  you'd expect from Planet Fitness's own Friday change. That's the
+  direction I predicted - once rides are available, kids go to Newark.
+  p = 0.0000, so this is statistically significant.
+
+----------------------------------------------------------------------
+3. EVERY DAY, 3-5 PM
+----------------------------------------------------------------------
+place      Fitness 19  Planet Fitness
+day                                  
+Monday           22.0            68.7
+Tuesday          17.0            64.0
+Wednesday        17.7            70.7
+Thursday         21.7            65.3
+Friday           46.3            43.3
+
+----------------------------------------------------------------------
+4. SIDE NOTE: the Lucky snack run
+----------------------------------------------------------------------
+Lucky is a COMPLEMENT to the gym - you do both on one trip.
+So does the snack stop come before the workout or after?
+
+ lag_hours  correlation
+        -3       -0.096
+        -2        0.125
+        -1        0.322
+         0        0.537
+         1        0.767
+         2        0.610
+         3        0.336
+
+  best lag = +1h (r=0.767)
+  Lucky peaks 1h BEFORE the gym -> kids buy snacks first
+
+======================================================================

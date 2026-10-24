@@ -1,0 +1,15 @@
+# my Apify token - never commit this
+.env
+
+# raw scraped JSON. I can always re-scrape it, and I'd rather not
+# republish Google's data in my repo
+data/cache/
+
+# Python junk
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# macOS junk
+.DS_Store
